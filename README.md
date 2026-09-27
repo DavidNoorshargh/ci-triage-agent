@@ -19,11 +19,11 @@ uv run python --version    # 3.12.x
 
 ## Tests
 
-Preprocessor fixtures are plain `.log` files under `tests/fixtures/`. Fake workflow runs (what the tools read) live under `tests/fixtures/runs/<run_id>/` (`run.json`, `job.log`, optional `junit.xml`, `commit_files.json`).
+Preprocessor fixtures are plain `.log` files under `tests/fixtures/`. Fake workflow runs (what the tools read) live under `tests/fixtures/runs/<run_id>/` (`run.json`, `job.log`, optional `junit.xml`, `commit_files.json`). `12345` has a full set; `99999` has no `junit.xml`.
 
 ```bash
 uv run pytest -q
-uv run pytest tests/test_preprocess.py -q
+uv run pytest tests/test_tools.py -q
 uv run pytest tests/test_preprocess.py::test_flake_log_keeps_timeout_signal -q
 ```
 

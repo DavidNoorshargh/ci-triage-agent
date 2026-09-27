@@ -1,0 +1,9 @@
+{
+  "name": "CI",
+  "sha": "fff999aaa",
+  "branch": "feat/no-junit",
+  "conclusion": "failure",
+  "jobs": [
+    { "name": "test", "conclusion": "failure" }
+  ]
+}

@@ -4,7 +4,7 @@ When a GitHub Actions run fails, an agent fetches a **truncated** log, classifie
 
 Check boxes as you finish them. Do not start Terraform apply until the preprocessor and replay evals work on disk.
 
-**Status (26 Sep 2026):** Week 0–1 done. Week 2 tools exist over fixture files (`FixtureStore`, `get_workflow_run`, `get_failed_job_log`, `get_junit_summary`, `get_commit_files`) — no live GitHub. **Next:** pytest for those tools, then Bedrock Converse + `toolConfig` (max 4 rounds) and a local CLI. No `terraform apply`.
+**Status (27 Sep 2026):** Week 0–1 done. Week 2 tools + pytest over fixture files (`FixtureStore`, `get_workflow_run`, `get_failed_job_log`, `get_junit_summary`, `get_commit_files`) — no live GitHub. **Next:** Bedrock Converse + `toolConfig` (max 4 rounds) and a local CLI. No `terraform apply`.
 
 ---
 
@@ -175,7 +175,7 @@ Do this before writing agent code.
 - [x] Pytest: synthetic **npm 503 / registry** infra failure (`tests/fixtures/npm_503.log`)
 - [x] Pytest: synthetic **OOM / runner killed** infra failure (`tests/fixtures/oom.log`)
 - [x] Preprocessor tests prove the cap cannot be exceeded (`over_char_cap.log`)
-- [x] `pytest` is green with **no** AWS and **no** Bedrock calls (12 tests; also `tests/test_schema.py`)
+- [x] `pytest` is green with **no** AWS and **no** Bedrock calls (19 tests: schema, preprocess, tools)
 
 **Done when:** preprocessor never exceeds the char cap; tests do not call AWS.
 
@@ -185,6 +185,7 @@ Do this before writing agent code.
 
 - [ ] Bedrock Converse client with `toolConfig`
 - [x] Tool implementations over **fixture files** (fake GitHub) — `src/ci_triage/tools.py` + `store.py`; runs under `tests/fixtures/runs/<run_id>/`
+- [x] Pytest for those tools (`tests/test_tools.py`; happy path `12345`, missing JUnit `99999`, unknown id, path traversal)
 - [ ] CLI: `python -m ci_triage path/to/log` (or `scripts/triage_local.py`)
 - [ ] Output always validates against the Pydantic schema
 - [ ] Traces written to local JSON
